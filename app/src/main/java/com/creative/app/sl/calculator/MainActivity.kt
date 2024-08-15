@@ -65,7 +65,7 @@ fun Calculator(){
             OutlinedTextField(
                 value = numberOne,
                 onValueChange = {
-                      numberOne = it
+                      if (it.length <= 5) numberOne = it
                       sumCalculation()
                 },
                 label = {
@@ -84,7 +84,7 @@ fun Calculator(){
             OutlinedTextField(
                 value = numberTwo,
                 onValueChange = {
-                     numberTwo = it
+                     if (it.length <= 5) numberTwo = it
                      sumCalculation()
                 },
                 label = {
