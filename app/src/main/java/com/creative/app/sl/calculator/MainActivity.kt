@@ -24,8 +24,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.creative.app.sl.calculator.ui.theme.CalculatorTheme
 
 class MainActivity : ComponentActivity() {
@@ -53,6 +57,13 @@ fun Calculator() {
     var outputValue by remember { mutableStateOf("") }
     var operatorExpand by remember { mutableStateOf(false) }
     var operatorSymbol by remember { mutableStateOf("+") }
+
+
+    val customTextStyle = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontSize = 32.sp,
+        color = Color.Red
+    )
 
     fun sumCalculation() {
         val inputValueNumberOne = numberOne.toIntOrNull() ?: 0
@@ -91,6 +102,11 @@ fun Calculator() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = "Mini Calculator",
+            style = customTextStyle
+        )
+        Spacer(modifier = Modifier.height(16.dp))
         Row {
             OutlinedTextField(
                 value = numberOne,
@@ -105,6 +121,7 @@ fun Calculator() {
                 }
             )
         }
+        Spacer(modifier = Modifier.height(16.dp))
         Row {
             Box {
                 Button(
@@ -113,7 +130,7 @@ fun Calculator() {
                     }
                 ) {
                     Text(
-                        text = "+"
+                        text = operatorSymbol
                     )
                 }
                 DropdownMenu(
@@ -162,6 +179,7 @@ fun Calculator() {
                 }
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
         Row {
             OutlinedTextField(
                 value = numberTwo,
@@ -179,7 +197,8 @@ fun Calculator() {
         Spacer(modifier = Modifier.height(16.dp))
         Row {
             Text(
-                text = outputValue
+                text = "Result: $outputValue",
+                style = MaterialTheme.typography.headlineMedium
             )
         }
     }
