@@ -74,8 +74,13 @@ fun Calculator() {
             }
 
             "/" -> {
-                val result = inputValueNumberOne / inputValueNumberTwo
-                outputValue = result.toString()
+                if(inputValueNumberTwo == 0){
+                    val result = inputValueNumberOne / 1
+                    outputValue = result.toString()
+                }else{
+                    val result = inputValueNumberOne / inputValueNumberTwo
+                    outputValue = result.toString()
+                }
             }
         }
 
