@@ -46,17 +46,39 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Calculator(){
+fun Calculator() {
 
     var numberOne by remember { mutableStateOf("") }
     var numberTwo by remember { mutableStateOf("") }
     var outputValue by remember { mutableStateOf("") }
+    var operatorExpand by remember { mutableStateOf(false) }
+    var operatorSymbol by remember { mutableStateOf("+") }
 
-    fun sumCalculation(){
+    fun sumCalculation() {
         val inputValueNumberOne = numberOne.toIntOrNull() ?: 0
         val inputValueNumberTwo = numberTwo.toIntOrNull() ?: 0
-        val result = inputValueNumberOne + inputValueNumberTwo
-        outputValue = result.toString()
+        when (operatorSymbol) {
+            "+" -> {
+                val result = inputValueNumberOne + inputValueNumberTwo
+                outputValue = result.toString()
+            }
+
+            "-" -> {
+                val result = inputValueNumberOne - inputValueNumberTwo
+                outputValue = result.toString()
+            }
+
+            "*" -> {
+                val result = inputValueNumberOne * inputValueNumberTwo
+                outputValue = result.toString()
+            }
+
+            "/" -> {
+                val result = inputValueNumberOne / inputValueNumberTwo
+                outputValue = result.toString()
+            }
+        }
+
     }
 
     Column(
@@ -68,8 +90,8 @@ fun Calculator(){
             OutlinedTextField(
                 value = numberOne,
                 onValueChange = {
-                      if (it.length <= 5) numberOne = it
-                      sumCalculation()
+                    if (it.length <= 5) numberOne = it
+                    sumCalculation()
                 },
                 label = {
                     Text(
@@ -79,40 +101,68 @@ fun Calculator(){
             )
         }
         Row {
-           Box{
-               Button(onClick = { /*TODO*/ }) {
-                   Text(
-                       text = "+"
-                   )
-               }
-               DropdownMenu(expanded = false, onDismissRequest = { /*TODO*/ }) {
-                   DropdownMenuItem(
-                       text = {
-                           Text(text = "-")
-                       },
-                       onClick = { /*TODO*/ }
-                   )
-                   DropdownMenuItem(
-                       text = {
-                           Text(text = "*")
-                       },
-                       onClick = { /*TODO*/ }
-                   )
-                   DropdownMenuItem(
-                       text = {
-                           Text(text = "/")
-                       },
-                       onClick = { /*TODO*/ }
-                   )
-               }
-           }
+            Box {
+                Button(
+                    onClick = {
+                        operatorExpand = true
+                    }
+                ) {
+                    Text(
+                        text = "+"
+                    )
+                }
+                DropdownMenu(
+                    expanded = operatorExpand,
+                    onDismissRequest = { operatorExpand = false }) {
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "+")
+                        },
+                        onClick = {
+                            operatorExpand = false
+                            operatorSymbol = "+"
+                            sumCalculation()
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "-")
+                        },
+                        onClick = {
+                            operatorExpand = false
+                            operatorSymbol = "-"
+                            sumCalculation()
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "*")
+                        },
+                        onClick = {
+                            operatorExpand = false
+                            operatorSymbol = "*"
+                            sumCalculation()
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "/")
+                        },
+                        onClick = {
+                            operatorExpand = false
+                            operatorSymbol = "/"
+                            sumCalculation()
+                        }
+                    )
+                }
+            }
         }
         Row {
             OutlinedTextField(
                 value = numberTwo,
                 onValueChange = {
-                     if (it.length <= 5) numberTwo = it
-                     sumCalculation()
+                    if (it.length <= 5) numberTwo = it
+                    sumCalculation()
                 },
                 label = {
                     Text(
@@ -137,6 +187,6 @@ fun Calculator(){
 @Composable
 fun CalculatorPreview() {
     CalculatorTheme {
-       Calculator()
+        Calculator()
     }
 }
