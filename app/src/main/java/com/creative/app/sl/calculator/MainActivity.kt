@@ -93,6 +93,10 @@ fun Calculator() {
                     outputValue = result.toString()
                 }
             }
+            "%" -> {
+                val result = inputValueNumberOne % inputValueNumberTwo
+                outputValue = result.toString()
+            }
         }
 
     }
@@ -173,6 +177,16 @@ fun Calculator() {
                         onClick = {
                             operatorExpand = false
                             operatorSymbol = "/"
+                            sumCalculation()
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "%")
+                        },
+                        onClick = {
+                            operatorExpand = false
+                            operatorSymbol = "%"
                             sumCalculation()
                         }
                     )
