@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -88,19 +90,20 @@ fun Calculator() {
             }
 
             "/" -> {
-                if(inputValueNumberTwo == 0){
+                if (inputValueNumberTwo == 0) {
                     val result = inputValueNumberOne / 1
                     outputValue = result.toString()
-                }else{
+                } else {
                     val result = inputValueNumberOne / inputValueNumberTwo
                     outputValue = result.toString()
                 }
             }
+
             "%" -> {
-                if(inputValueNumberTwo == 0){
+                if (inputValueNumberTwo == 0) {
                     val result = 0
                     outputValue = result.toString()
-                }else{
+                } else {
                     val result = inputValueNumberOne % inputValueNumberTwo
                     outputValue = result.toString()
                 }
@@ -131,7 +134,8 @@ fun Calculator() {
                     Text(
                         text = "Enter First Number"
                     )
-                }
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -214,7 +218,8 @@ fun Calculator() {
                     Text(
                         text = "Enter Second Number"
                     )
-                }
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
