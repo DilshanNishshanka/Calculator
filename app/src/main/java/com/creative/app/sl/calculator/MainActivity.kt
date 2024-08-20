@@ -70,25 +70,27 @@ fun Calculator() {
         color = Color.Red
     )
 
+    //Calculation function
     fun sumCalculation() {
         val inputValueNumberOne = numberOne.toIntOrNull() ?: 0
         val inputValueNumberTwo = numberTwo.toIntOrNull() ?: 0
         when (operatorSymbol) {
+            // + Calculation
             "+" -> {
                 val result = inputValueNumberOne + inputValueNumberTwo
                 outputValue = result.toString()
             }
-
+           // - Calculation
             "-" -> {
                 val result = inputValueNumberOne - inputValueNumberTwo
                 outputValue = result.toString()
             }
-
+            // - Calculation
             "*" -> {
                 val result = inputValueNumberOne * inputValueNumberTwo
                 outputValue = result.toString()
             }
-
+            // / Calculation
             "/" -> {
                 if (inputValueNumberTwo == 0) {
                     val result = inputValueNumberOne / 1
@@ -98,7 +100,7 @@ fun Calculator() {
                     outputValue = result.toString()
                 }
             }
-
+            // % Calculation
             "%" -> {
                 if (inputValueNumberTwo == 0) {
                     val result = 0
@@ -123,10 +125,12 @@ fun Calculator() {
             style = customTextStyle
         )
         Spacer(modifier = Modifier.height(16.dp))
+        // First number text filed
         Row {
             OutlinedTextField(
                 value = numberOne,
                 onValueChange = {
+                    // Limit the input to 5 characters
                     if (it.length <= 5) numberOne = it
                     sumCalculation()
                 },
@@ -139,6 +143,7 @@ fun Calculator() {
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
+        // Dropdown list
         Row {
             Box {
                 Button(
@@ -207,10 +212,12 @@ fun Calculator() {
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
+        // Second number text filed
         Row {
             OutlinedTextField(
                 value = numberTwo,
                 onValueChange = {
+                    // Limit the input to 5 characters
                     if (it.length <= 5) numberTwo = it
                     sumCalculation()
                 },
@@ -223,6 +230,7 @@ fun Calculator() {
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
+        // Display the output value
         Row {
             Text(
                 text = "Result: $outputValue",
