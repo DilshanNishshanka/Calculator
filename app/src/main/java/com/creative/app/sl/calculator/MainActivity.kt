@@ -3,12 +3,14 @@ package com.creative.app.sl.calculator
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,6 +20,8 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -76,24 +80,24 @@ fun Calculator() {
     fun sumCalculation() {
         val inputValueNumberOne = numberOne.toIntOrNull() ?: 0
         val inputValueNumberTwo = numberTwo.toIntOrNull() ?: 0
-        when (operatorSymbol) {
+        when (tabIndex) {
             // + Calculation
-            "+" -> {
+            0 -> {
                 val result = inputValueNumberOne + inputValueNumberTwo
                 outputValue = result.toString()
             }
            // - Calculation
-            "-" -> {
+            1 -> {
                 val result = inputValueNumberOne - inputValueNumberTwo
                 outputValue = result.toString()
             }
             // - Calculation
-            "*" -> {
+            2 -> {
                 val result = inputValueNumberOne * inputValueNumberTwo
                 outputValue = result.toString()
             }
             // / Calculation
-            "/" -> {
+            3 -> {
                 if (inputValueNumberTwo == 0) {
                     val result = inputValueNumberOne / 1
                     outputValue = result.toString()
@@ -103,7 +107,7 @@ fun Calculator() {
                 }
             }
             // % Calculation
-            "%" -> {
+            4 -> {
                 if (inputValueNumberTwo == 0) {
                     val result = 0
                     outputValue = result.toString()
@@ -121,6 +125,7 @@ fun Calculator() {
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
         Text(
             text = "Mini Calculator",
@@ -209,6 +214,26 @@ fun Calculator() {
                             operatorSymbol = "%"
                             sumCalculation()
                         }
+                    )
+                }
+            }
+        }
+
+        Column(modifier = Modifier.fillMaxWidth()) {
+            TabRow(
+                selectedTabIndex = tabIndex,
+                containerColor = Color.Red,
+                contentColor = Color.Green
+            ) {
+                operatorsTabList.forEachIndexed { index, title ->
+                    Tab(
+                        selected = tabIndex == index,
+                        onClick = {
+                            tabIndex = index
+                        },
+                        selectedContentColor = Color.Red,
+                        unselectedContentColor = Color.Black,
+                        text = { Text(text = title, color = Color(0xff6FAAEE)) }
                     )
                 }
             }
