@@ -64,6 +64,7 @@ fun Calculator() {
     var operatorSymbol by remember { mutableStateOf("+") }
     var tabIndex by remember { mutableStateOf(0) }
 
+    val operatorsTabList = listOf("+", "-", "*", "/", "%")
 
     val customTextStyle = TextStyle(
         fontFamily = FontFamily.Monospace,
