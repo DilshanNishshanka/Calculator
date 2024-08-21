@@ -62,6 +62,7 @@ fun Calculator() {
     var outputValue by remember { mutableStateOf("") }
     var operatorExpand by remember { mutableStateOf(false) }
     var operatorSymbol by remember { mutableStateOf("+") }
+    var tabIndex by remember { mutableStateOf(0) }
 
 
     val customTextStyle = TextStyle(
