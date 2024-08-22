@@ -3,13 +3,15 @@ package com.creative.app.sl.calculator
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -144,26 +146,33 @@ fun Calculator() {
         }
         Spacer(modifier = Modifier.height(16.dp))
 
-
-        Column(modifier = Modifier.fillMaxWidth()) {
-            TabRow(
-                selectedTabIndex = tabIndex,
-                containerColor = Color.Red,
-                contentColor = Color.Green
-            ) {
-                operatorsTabList.forEachIndexed { index, title ->
-                    Tab(
-                        selected = tabIndex == index,
-                        onClick = {
-                            tabIndex = index
-                        },
-                        selectedContentColor = Color.Red,
-                        unselectedContentColor = Color.Black,
-                        text = { Text(text = title, color = Color(0xff6FAAEE)) }
-                    )
-                }
+        // Tab layout
+        TabRow(
+            selectedTabIndex = tabIndex,
+            modifier = Modifier.padding(32.dp),
+                    contentColor = Color.Green
+        ) {
+            operatorsTabList.forEachIndexed { index, title ->
+                Tab(
+                    selected = tabIndex == index,
+                    onClick = {
+                        tabIndex = index
+                    },
+                    selectedContentColor = Color.Red,
+                    unselectedContentColor = Color.Black,
+                    modifier = Modifier
+                        .border(border = BorderStroke(width = 1.dp, Color.Black)),
+                    text = {
+                        Text(
+                            text = title,
+                            color = Color(0xff6FAAEE),
+                            fontSize = 20.sp
+                        )
+                    }
+                )
             }
         }
+
         Spacer(modifier = Modifier.height(16.dp))
         // Second number text filed
         Row {
