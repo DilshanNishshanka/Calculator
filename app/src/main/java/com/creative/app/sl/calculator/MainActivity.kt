@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,9 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -149,74 +145,7 @@ fun Calculator() {
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
-        // Dropdown list
-        Row {
-            Box {
-                Button(
-                    onClick = {
-                        operatorExpand = true
-                    }
-                ) {
-                    Text(
-                        text = operatorSymbol
-                    )
-                }
-                DropdownMenu(
-                    expanded = operatorExpand,
-                    onDismissRequest = { operatorExpand = false }) {
-                    DropdownMenuItem(
-                        text = {
-                            Text(text = "+")
-                        },
-                        onClick = {
-                            operatorExpand = false
-                            operatorSymbol = "+"
-                            sumCalculation()
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {
-                            Text(text = "-")
-                        },
-                        onClick = {
-                            operatorExpand = false
-                            operatorSymbol = "-"
-                            sumCalculation()
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {
-                            Text(text = "*")
-                        },
-                        onClick = {
-                            operatorExpand = false
-                            operatorSymbol = "*"
-                            sumCalculation()
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {
-                            Text(text = "/")
-                        },
-                        onClick = {
-                            operatorExpand = false
-                            operatorSymbol = "/"
-                            sumCalculation()
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {
-                            Text(text = "%")
-                        },
-                        onClick = {
-                            operatorExpand = false
-                            operatorSymbol = "%"
-                            sumCalculation()
-                        }
-                    )
-                }
-            }
-        }
+
 
         Column(modifier = Modifier.fillMaxWidth()) {
             TabRow(
