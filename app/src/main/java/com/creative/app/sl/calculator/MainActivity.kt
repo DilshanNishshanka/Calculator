@@ -149,7 +149,9 @@ fun Calculator() {
         // Tab layout
         TabRow(
             selectedTabIndex = tabIndex,
-            modifier = Modifier.padding(start = 32.dp, end = 32.dp)
+            modifier = Modifier
+                .padding(start = 32.dp, end = 32.dp),
+            indicator = {}
         ) {
             operatorsTabList.forEachIndexed { index, title ->
                 val selected = tabIndex == index
