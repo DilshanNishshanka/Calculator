@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -150,7 +151,8 @@ fun Calculator() {
         TabRow(
             selectedTabIndex = tabIndex,
             modifier = Modifier
-                .padding(start = 32.dp, end = 32.dp),
+                .padding(horizontal = 64.dp)
+                .fillMaxWidth(),
             indicator = {},
             divider = {}
         ) {
