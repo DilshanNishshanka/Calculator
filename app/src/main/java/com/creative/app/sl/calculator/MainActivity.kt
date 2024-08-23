@@ -3,8 +3,7 @@ package com.creative.app.sl.calculator
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -81,7 +80,7 @@ fun Calculator() {
                 val result = inputValueNumberOne + inputValueNumberTwo
                 outputValue = result.toString()
             }
-           // - Calculation
+            // - Calculation
             1 -> {
                 val result = inputValueNumberOne - inputValueNumberTwo
                 outputValue = result.toString()
@@ -149,25 +148,37 @@ fun Calculator() {
         // Tab layout
         TabRow(
             selectedTabIndex = tabIndex,
-            modifier = Modifier.padding(32.dp),
-                    contentColor = Color.Green
+            modifier = Modifier.padding(start = 32.dp, end = 32.dp)
         ) {
             operatorsTabList.forEachIndexed { index, title ->
+                val selected = tabIndex == index
                 Tab(
-                    selected = tabIndex == index,
-                    onClick = {
-                        tabIndex = index
-                    },
-                    selectedContentColor = Color.Red,
-                    unselectedContentColor = Color.Black,
-                    modifier = Modifier
-                        .border(border = BorderStroke(width = 1.dp, Color.Black)),
+                    modifier =
+                    if (selected) Modifier
+                        .background(
+                            Color(
+                                0xff1E76DA
+                            )
+                        )
+                    else Modifier
+                        .background(
+                            Color.White
+                        ),
                     text = {
-                        Text(
+                        if (selected) Text(
                             text = title,
-                            color = Color(0xff6FAAEE),
+                            color = Color.Red,
                             fontSize = 20.sp
                         )
+                        else Text(
+                            text = title,
+                            color = Color.Black,
+                            fontSize = 20.sp
+                        )
+                    } ,
+                    selected = selected,
+                    onClick = {
+                        tabIndex = index
                     }
                 )
             }
