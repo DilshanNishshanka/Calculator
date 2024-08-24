@@ -230,6 +230,7 @@ fun Calculator() {
                 text = "Result: $outputValue",
                 style = MaterialTheme.typography.headlineMedium
             )
+            sumCalculation()
         }
     }
 }
