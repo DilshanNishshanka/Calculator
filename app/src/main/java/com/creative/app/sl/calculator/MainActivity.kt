@@ -132,22 +132,20 @@ fun Calculator() {
         )
         Spacer(modifier = Modifier.height(16.dp))
         // First number text filed
-        Row {
-            OutlinedTextField(
-                value = numberOne,
-                onValueChange = {
-                    // Limit the input to 5 characters
-                    if (it.length <= 5) numberOne = it
-                    sumCalculation()
-                },
-                label = {
-                    Text(
-                        text = "Enter First Number"
-                    )
-                },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-            )
-        }
+        OutlinedTextField(
+            value = numberOne,
+            onValueChange = {
+                // Limit the input to 5 characters
+                if (it.length <= 5) numberOne = it
+                sumCalculation()
+            },
+            label = {
+                Text(
+                    text = "Enter First Number"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
         Spacer(modifier = Modifier.height(16.dp))
 
         // Tab layout
@@ -207,31 +205,27 @@ fun Calculator() {
 
         Spacer(modifier = Modifier.height(16.dp))
         // Second number text filed
-        Row {
-            OutlinedTextField(
-                value = numberTwo,
-                onValueChange = {
-                    // Limit the input to 5 characters
-                    if (it.length <= 5) numberTwo = it
-                    sumCalculation()
-                },
-                label = {
-                    Text(
-                        text = "Enter Second Number"
-                    )
-                },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-            )
-        }
+        OutlinedTextField(
+            value = numberTwo,
+            onValueChange = {
+                // Limit the input to 5 characters
+                if (it.length <= 5) numberTwo = it
+                sumCalculation()
+            },
+            label = {
+                Text(
+                    text = "Enter Second Number"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
         Spacer(modifier = Modifier.height(16.dp))
         // Display the output value
-        Row {
-            Text(
-                text = "Result: $outputValue",
-                style = MaterialTheme.typography.headlineMedium
-            )
-            sumCalculation()
-        }
+        Text(
+            text = "Result: $outputValue",
+            style = MaterialTheme.typography.headlineMedium
+        )
+        sumCalculation()
     }
 }
 
