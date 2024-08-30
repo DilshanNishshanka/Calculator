@@ -140,7 +140,7 @@ fun Calculator() {
             },
             label = {
                 Text(
-                    text = "Enter First Number"
+                    text = "First Number"
                 )
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -213,7 +213,7 @@ fun Calculator() {
             },
             label = {
                 Text(
-                    text = "Enter Second Number"
+                    text = "Second Number"
                 )
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
