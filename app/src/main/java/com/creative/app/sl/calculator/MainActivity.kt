@@ -126,7 +126,7 @@ fun Calculator() {
 
     ) {
         Text(
-            text = "Mini Calculator",
+            text = "Custom Calculator App",
             style = customTextStyle
         )
         Spacer(modifier = Modifier.height(16.dp))
